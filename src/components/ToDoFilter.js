@@ -1,7 +1,11 @@
+import { useTask } from "../hooks/useTask";
 import Swal from "sweetalert2";
 import ButtonFilter from "./ButtonFilter";
 
-export default function ToDoFilter({count = 0, activeFilter, showAllTasks, showToDoTask, showCompletedTask, handleDeleteCompleteTask}) {
+export default function ToDoFilter({count = 0}) {
+  
+  const {activeFilter, showAllTasks, showToDoTask, showCompletedTask, handleDeleteCompleteTask} = useTask()
+
   return (
     <div className="flex items-center justify-between p-4 bg-gray-700 border-b border-solid border-gray-600">
         <p className="text-gray-400 text-sm">{count} task(s)</p>

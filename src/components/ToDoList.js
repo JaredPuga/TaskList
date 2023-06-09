@@ -1,21 +1,13 @@
 import { useState } from "react";
+import { useTask } from "../hooks/useTask";
 import ToDo from "./ToDo";
 import ToDoFilter from "./ToDoFilter";
 import NoTasks from "./NoTasks";
 
-function ToDoList({
-  tasks,
-  addTask,
-  handleSetCompleteTask,
-  handleDeleteTask,
-  showAllTasks,
-  showToDoTask,
-  showCompletedTask,
-  handleDeleteCompleteTask,
-  activeFilter,
-  handleUpdateTask,
-}) {
+function ToDoList() {
+  
   const [newTask, setNewTask] = useState("");
+  const { FilteredTask, addTask} = useTask()
 
   return (
     <div className="mx-auto mt-8 p-4 shadow-md w-10/12 border-2 border-solid rounded-lg shadow-cyan-500 border-white">
@@ -41,23 +33,15 @@ function ToDoList({
 
       <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
         <ToDoFilter 
-          count={tasks.length}
-          showAllTasks={showAllTasks}
-          showToDoTask={showToDoTask}
-          showCompletedTask={showCompletedTask}
-          handleDeleteCompleteTask={handleDeleteCompleteTask}
-          activeFilter={activeFilter}
+          count={FilteredTask.length}
         />
         {
-          tasks.length === 0 && <NoTasks />
+          FilteredTask.length === 0 && <NoTasks />
         }
-        {tasks.map((task) => (
+        {FilteredTask.map((task) => (
           <ToDo
             key={task.id}
             task={task}
-            handleSetCompleteTask={handleSetCompleteTask}
-            handleDeleteTask={handleDeleteTask}
-            handleUpdateTask={handleUpdateTask}
           />
         ))}
       </div>

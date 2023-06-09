@@ -1,6 +1,10 @@
-export default function ToDo({task, handleSetCompleteTask, handleDeleteTask, handleUpdateTask}) {
+import { useTask } from "../hooks/useTask";
+
+export default function ToDo({task}) {
 
   const {title, completed, id} = task
+
+  const {handleSetCompleteTask, handleDeleteTask, handleUpdateTask} = useTask()
 
   return (
     <div className="flex items-center justify-between p-4 bg-gray-700 border-b border-solid border-gray-600">
