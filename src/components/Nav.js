@@ -5,19 +5,19 @@ export default function Nav() {
   const {user, logout} = useAuth0()
 
   return (
-    <div className="m-auto flex flex-row justify-between w-full bg-indigo-500 md:justify-between p-5 gap-2 items-center">
+    <div className="m-auto flex flex-row justify-between w-full bg-slate-700 md:justify-between p-5 gap-2 items-center">
       <div>
         <h1 className="uppercase font-bold text-2xl">Task List</h1>
       </div>
       <div className="w-1/2 flex justify-end gap-4 items-center">
-        <h1 className="font-bold">Hola, {user.name}</h1>
+        <h1 className="font-bold">Welcome, {user.name}</h1>
         <button
             className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })
             }
         >
-            Salir
+            Log out
         </button>
       </div>
     </div>
