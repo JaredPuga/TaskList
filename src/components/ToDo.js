@@ -8,7 +8,7 @@ export default function ToDo({task}) {
 
   return (
     <div className="flex items-center justify-between p-4 bg-gray-700 border-b border-solid border-gray-600">
-        <div className="flex items-center" onClick={() => handleSetCompleteTask(id)}>
+        <div className="flex items-center" onClick={() => handleSetCompleteTask(id, completed)}>
             {!completed ? 
               <span className="border-solid border border-gray-500 rounded-full p-3 cursor-pointer"></span> 
               : 
