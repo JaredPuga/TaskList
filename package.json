@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "@8base/api-client": "^1.6.2",
+    "@apollo/client": "^3.7.15",
     "@auth0/auth0-react": "^2.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "graphql": "^16.6.0",
     "graphql-request": "^6.1.0",
     "next-auth": "^4.22.1",
     "react": "^18.2.0",

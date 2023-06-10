@@ -9,22 +9,29 @@ function ToDoList() {
   const [newTask, setNewTask] = useState("");
   const { FilteredTask, addTask} = useTask()
 
+  const addNewTask = () => {
+    addTask(newTask);
+    setNewTask("");
+  }
+
+  const keyEnter = (e) => {
+    e.keyCode === 13 && addNewTask()
+  }
+
   return (
     <div className="mx-auto mt-8 p-4 shadow-md w-10/12 border-2 border-solid rounded-lg shadow-cyan-500 border-white">
-      <h1 className="text-2xl font-bold mb-4">Estas son las cosas por hacer</h1>
+      <h1 className="text-2xl font-bold mb-4">Task to do</h1>
       <div className="flex mb-4">
         <input
           type="text"
           placeholder="Type some task"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
+          onKeyDown={(e) => keyEnter(e)}
           className="flex-grow border border-gray-400 rounded-l py-2 px-4 mr-2 focus:outline-none text-black"
         />
         <button
-          onClick={() => {
-            addTask(newTask);
-            setNewTask("");
-          }}
+          onClick={addNewTask}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
         >
           Add Task

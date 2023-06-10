@@ -6,7 +6,6 @@ export default function App() {
   
   const {isAuthenticated} = useAuth0()
 
-  console.log(process.env.REACT_APP_DOMAIN);
   return (
     !isAuthenticated ? <SigIn /> : <Home />
   )
