@@ -3,11 +3,7 @@ import SigIn from "./components/SigIn";
 import Home from "./components/Home";
 
 export default function App() {
-  
-  const {isAuthenticated} = useAuth0()
+  const { isAuthenticated } = useAuth0();
 
-  return (
-    !isAuthenticated ? <SigIn /> : <Home />
-  )
+  return !isAuthenticated ? <SigIn /> : <Home />;
 }
-

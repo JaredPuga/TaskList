@@ -1,8 +1,8 @@
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import ToDoList from "./ToDoList";
 import Nav from "./Nav";
-import { ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   return (

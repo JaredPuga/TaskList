@@ -5,18 +5,17 @@ import ToDoFilter from "./ToDoFilter";
 import NoTasks from "./NoTasks";
 
 function ToDoList() {
-  
   const [newTask, setNewTask] = useState("");
-  const { FilteredTask, addTask} = useTask()
+  const { FilteredTask, addTask } = useTask();
 
   const addNewTask = () => {
     addTask(newTask);
     setNewTask("");
-  }
+  };
 
   const keyEnter = (e) => {
-    e.keyCode === 13 && addNewTask()
-  }
+    e.keyCode === 13 && addNewTask();
+  };
 
   return (
     <div className="mx-auto mt-8 p-4 shadow-md w-10/12 border-2 border-solid rounded-lg shadow-cyan-500 border-white">
@@ -39,17 +38,12 @@ function ToDoList() {
       </div>
 
       <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
-        <ToDoFilter 
-          count={FilteredTask.length}
-        />
-        {
-          FilteredTask.length === 0 && <NoTasks text={"Great!, you're up to date :)"} />
-        }
+        <ToDoFilter count={FilteredTask.length} />
+        {FilteredTask.length === 0 && (
+          <NoTasks text={"Great!, you're up to date :)"} />
+        )}
         {FilteredTask.map((task) => (
-          <ToDo
-            key={task.id}
-            task={task}
-          />
+          <ToDo key={task.id} task={task} />
         ))}
       </div>
     </div>

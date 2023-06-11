@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { gql, useApolloClient } from "@apollo/client";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
@@ -60,7 +60,7 @@ const TaskProvider = ({ children }) => {
     }
   };
 
-  const handleSetCompleteTask = async(id, completed) => {
+  const handleSetCompleteTask = async (id, completed) => {
     const updatedList = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, completed: !task.completed };
@@ -92,7 +92,7 @@ const TaskProvider = ({ children }) => {
     setTasks(updatedList);
   };
 
-  const handleDeleteTask = async(id) => {
+  const handleDeleteTask = async (id) => {
     const updatedList = tasks.filter((task) => task.id !== id);
     try {
       const mutation = gql`
@@ -138,10 +138,10 @@ const TaskProvider = ({ children }) => {
           return { ...task, title: newTitle };
         }
         return task;
-    });
+      });
 
       try {
-      const mutation = gql`
+        const mutation = gql`
           mutation UpdateTaskCompletion {
             taskUpdate(data: { id: "${id}", title: "${newTitle}" }) {
               id
@@ -150,19 +150,19 @@ const TaskProvider = ({ children }) => {
           }
       `;
 
-      const response = await client.mutate({
-        mutation,
-      });
+        const response = await client.mutate({
+          mutation,
+        });
 
-      const taskList = [...tasks];
-      taskList.push(response.data.taskUpdate);
-      setTasks(taskList);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+        const taskList = [...tasks];
+        taskList.push(response.data.taskUpdate);
+        setTasks(taskList);
+      } catch (error) {
+        console.error("Error:", error);
+      }
 
-    toast.success("Task updated!");
-    setTasks(updatedList);
+      toast.success("Task updated!");
+      setTasks(updatedList);
     }
   };
 
@@ -178,8 +178,7 @@ const TaskProvider = ({ children }) => {
     setActiveFilter("completed");
   };
 
-  const handleDeleteCompleteTask = async() => {
-
+  const handleDeleteCompleteTask = async () => {
     try {
       const mutation = gql`
       mutation DeleteAllTask {

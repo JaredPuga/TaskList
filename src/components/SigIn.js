@@ -15,10 +15,11 @@ const { loginWithRedirect, isLoading, error } = useAuth0();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className='font-bold text-5xl'>Bienvenido a mi <span className='text-cyan-400'>Task List</span></h1>
+      <h1 className='font-bold text-5xl'>Welcome to my <span className='text-cyan-400'>Task List</span></h1>
+      <img src="/home.svg" alt="no task icon" className='w-96'/>
       <div className='flex flex-row w-full items-center justify-center px-20'>
-        <button
-        className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      <button
+        className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded btnlogin"
         onClick={() => {loginWithRedirect(); window.location.reload()}}
       >
         Sign in
