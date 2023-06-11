@@ -10,7 +10,7 @@ export default function Nav() {
         <h1 className="uppercase font-bold text-2xl">Task List</h1>
       </div>
       <div className="w-1/2 flex justify-end gap-4 items-center">
-        <h1 className="font-bold">Welcome, {user.name}</h1>
+        <h2 className="font-bold">Welcome, {user?.name}</h2>
         <button
             className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() =>

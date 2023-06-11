@@ -43,7 +43,7 @@ function ToDoList() {
           count={FilteredTask.length}
         />
         {
-          FilteredTask.length === 0 && <NoTasks />
+          FilteredTask.length === 0 && <NoTasks text={"Great!, you're up to date :)"} />
         }
         {FilteredTask.map((task) => (
           <ToDo

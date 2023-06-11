@@ -12,7 +12,6 @@ const TaskProvider = ({ children }) => {
   const { user } = useAuth0();
   const [tasks, setTasks] = useState([]);
   const client = useApolloClient();
-
   useEffect(() => {
     const fetchData = () => {
       client
@@ -41,7 +40,7 @@ const TaskProvider = ({ children }) => {
     try {
       const mutation = gql`
             mutation {
-              taskCreate(data: {title: "${title}", email:"${user.email}"},) {
+              taskCreate(data: {title: "${title}", email:"${user.email}", user_name: "${user.name}"}) {
                   id
                   title
                   completed
@@ -139,9 +138,31 @@ const TaskProvider = ({ children }) => {
           return { ...task, title: newTitle };
         }
         return task;
+    });
+
+      try {
+      const mutation = gql`
+          mutation UpdateTaskCompletion {
+            taskUpdate(data: { id: "${id}", title: "${newTitle}" }) {
+              id
+              title
+            }
+          }
+      `;
+
+      const response = await client.mutate({
+        mutation,
       });
-      toast.success("Task updated!");
-      setTasks(updatedList);
+
+      const taskList = [...tasks];
+      taskList.push(response.data.taskUpdate);
+      setTasks(taskList);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    toast.success("Task updated!");
+    setTasks(updatedList);
     }
   };
 
@@ -157,9 +178,29 @@ const TaskProvider = ({ children }) => {
     setActiveFilter("completed");
   };
 
-  const handleDeleteCompleteTask = () => {
-    const updatedList = tasks.filter((task) => !task.completed);
-    setTasks(updatedList);
+  const handleDeleteCompleteTask = async() => {
+
+    try {
+      const mutation = gql`
+      mutation DeleteAllTask {
+        taskDeleteByFilter(filter: {email: {equals:"${user.email}"} }) {
+          success
+        }
+    }
+    `;
+
+      const response = await client.mutate({
+        mutation,
+      });
+
+      const taskList = [...tasks];
+      taskList.push(response.data.taskDeleteByFilter);
+      setTasks(taskList);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    setTasks([]);
   };
 
   useEffect(() => {

@@ -30,14 +30,14 @@ export default function ToDoFilter({count = 0}) {
                 handleDeleteCompleteTask()
                 Swal.fire(
                   'Deleted!',
-                  'Completed tasks has been deleted.',
+                  'All tasks has been deleted.',
                   'success'
                 )
               }
             })
           }}
         >
-            Clear Completed
+            Clear All
         </button>
         </div>
   )
